@@ -1,0 +1,349 @@
+{
+  // =========================================================
+  // =============== LaTeX Workshop Configuration =============
+  // =========================================================
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatex",
+      "command": "xelatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": ["%DOCFILE%"]
+    }
+  ],
+
+  "latex-workshop.latex.recipes": [
+    { "name": "XeLaTeX", "tools": ["xelatex"] },
+    { "name": "DoubleXe", "tools": ["xelatex","xelatex"] },
+    { "name": "PDFLaTeX", "tools": ["pdflatex", "pdflatex"] },
+    { "name": "latexmk", "tools": ["latexmk"] },
+    { "name": "BibTeX", "tools": ["bibtex"] },
+    {
+      "name": "grad_essay",
+      "tools": ["xelatex", "biber", "xelatex", "xelatex"]
+    },
+    {
+      "name": "pdflatex -> bibtex -> pdflatex*2",
+      "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+    }
+  ],
+
+  "latex-workshop.latex.recipes.maxRunTimes": 5,
+  "latex-workshop.latex.recipe.default": "lastUsed",
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.bbl",
+    "*.blg",
+    "*.idx",
+    "*.ind",
+    "*.lof",
+    "*.lot",
+    "*.out",
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.ist",
+    "*.fls",
+    "*.log",
+    "*.fdb_latexmk"
+  ],
+  "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+  "latex-workshop.message.error.show": false,
+  "latex-workshop.docker.enabled": false,
+  "latex-workshop.bibtex.files": ["**/*.bib"],
+  "latex-workshop.bibtex-format.use": true,
+  "latex-workshop.bibtex.format.tab": "&",
+  // "latex-workshop.intellisense.citation.format": "CiteKey: {{ title }}",
+
+  // =========================================================
+  // ==================== LTeX (Grammar) =====================
+  // =========================================================
+  "ltex.enabled": true,
+  "ltex.language": "en-US",          // or "zh-CN", "en-GB", etc.
+  "ltex.enabledLanguages": [
+    "latex",
+    "markdown"
+  ],
+  // "ltex.java.path": null,
+  // "ltex.additionalRules.replacementIds": ["BIBTEX_ENTRY_FIELD"],
+
+  // =========================================================
+  // ===================== Python Setup ======================
+  // =========================================================
+  "python.defaultInterpreterPath": "/opt/homebrew/Caskroom/miniconda/base/envs/py310/bin/python",
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.condaPath": "/opt/homebrew/Caskroom/miniconda/base/condabin/conda",
+  "python.terminal.activateEnvironment": true,
+  // =========================================================
+  // ==================== Code Runner ========================
+  // =========================================================
+  "code-runner.executorMap": {
+    "cpp": "cd $dir && /usr/bin/clang++ -std=c++17 -Wall -Wextra -g $fileName -I$workspaceFolder/include -I$workspaceFolder/src -I/opt/homebrew/Cellar/nlohmann-json/3.11.3/include -I/opt/homebrew/opt/lapack/include -L/opt/homebrew/opt/lapack/lib -llapacke -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+    "python": "python -u",
+    "matlab": "matlab -nosplash -nodesktop -r \"run('$fileName');exit;\""
+  },
+  "code-runner.executorMapByGlob": {
+    "pom.xml": "cd $dir && mvn clean package"
+  },
+  "code-runner.runInTerminal": true,
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.saveAllFilesBeforeRun": true,
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.ignoreSelection": true,
+  
+  // =========================================================
+  // ======================== Vim ============================
+  // =========================================================
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/opt/homebrew/bin/nvim",
+  "vim.neovimUseConfigFile": false,
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.leader": ",",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["<leader>", "d"], "after": ["d", "d"] },
+    { "before": ["<leader>","s","s"], "commands": ["workbench.action.gotoSymbol"] },
+    { "before": ["[", "d"], "commands": ["editor.action.marker.prev"] },
+    { "before": ["]", "d"], "commands": ["editor.action.marker.next"] },
+    { "before": ["[", "c"], "commands": ["workbench.action.editor.previousChange"] },
+    { "before": ["]", "c"], "commands": ["workbench.action.editor.nextChange"] },
+],
+  // "vim.commandLineModeKeyBindingsNonRecursive": [
+  //     {
+  //         "before": [":", "W"],
+  //         "after": [":", "w"]
+  //     }
+  // ],
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "vim.autoSwitchInputMethod.enable": true,
+  "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
+  "vim.autoSwitchInputMethod.obtainIMCmd": "/opt/homebrew/opt/im-select",
+  "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/opt/im-select {im}",
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1,
+  },
+
+  // =========================================================
+  // ===================== MATLAB ============================
+  // =========================================================
+  "MATLAB.installPath": "/Applications/MATLAB_R2024b.app",
+  "matlab.mlintpath": "/Applications/MATLAB_R2024b.app/bin/maci64/mlint",
+  "matlab.matlabpath": "/Applications/MATLAB_R2024b.app/bin/matlab",
+  "matlab.linterEncoding": "gb2312",
+
+  // =========================================================
+  // ====================== C / C++ ===========================
+  // =========================================================
+  "C_Cpp.debugShortcut": false,
+  "cmake.cmakePath": "/opt/homebrew/bin/cmake",
+  "[cpp]": {
+    "editor.wordBasedSuggestions": "off",
+    "editor.semanticHighlighting.enabled": true,
+    "editor.stickyScroll.defaultModel": "foldingProviderModel",
+    "editor.suggest.insertMode": "replace"
+  },
+
+  // =========================================================
+  // ====================== LeetCode ==========================
+  // =========================================================
+  "leetcode.defaultLanguage": "python3",
+  "leetcode.endpoint": "leetcode-cn",
+  "leetcode.workspaceFolder": "/Users/zhangshizhe/.leetcode",
+  "leetcode.outputFolder": "${difficulty}",
+  "leetcode.hint.configWebviewMarkdown": false,
+  "leetcode.filePath": {
+    "default": {
+      "folder": "",
+      "filename": "${id}.${kebab-case-name}.${ext}"
+    }
+  },
+
+  // =========================================================
+  // ==================== GitHub Copilot =====================
+  // =========================================================
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+    "quarto": true,
+    "latex": true,
+    "python": true
+  },
+  "github.copilot.advanced": {},
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github-enterprise.uri": "https://github.berkeley.edu/",
+
+  // =========================================================
+  // =================== Editor Settings =====================
+  // =========================================================
+  "editor.defaultFormatter": "James-Yu.latex-workshop",
+  "editor.lineNumbers": "relative",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.iconTheme": "vscode-icons-mac",
+  "workbench.editor.empty.hint": "hidden",
+  "window.zoomLevel": 1.4,
+
+  // =========================================================
+  // ====================== Terminal =========================
+  // =========================================================
+  
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.profiles.osx": {
+    "zsh": {
+      "path": "/bin/zsh",
+      "args": ["-l", "-i"]
+    }
+  },
+  "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.stickyScroll.enabled": true,
+  "terminal.integrated.shellIntegration.enabled": true,
+  // "terminal.integrated.commandsToSkipShell": ["matlab.interrupt"],
+
+  // =========================================================
+  // ================== Explorer & Files =====================
+  // =========================================================
+  "explorer.confirmDelete": false,
+  "files.enableTrash": true,
+  "explorer.confirmPasteNative": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.associations": {
+    "*.m": "matlab",
+    "*.cpp": "cpp",
+    "*.py": "python"
+  },
+
+  // =========================================================
+  // ===================== Miscellaneous =====================
+  // =========================================================
+  "settingsSync.ignoredExtensions": [
+    "mathworks.language-matlab"
+  ],
+  "python.analysis.aiCodeActions": {
+    
+    "implementAbstractClasses": true,
+    "generateSymbol": true,
+    "convertFormatString": true
+  },
+  "terminal.˜integrated.commandsToSkipShell": [
+    "matlab.interrupt"
+  ],
+  
+  // =========================================================
+  // ================ Plugin Helper Problem =================
+  // =========================================================
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/tmp": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist": true
+    },
+  "files.watcherExclude": {
+    "**/.git/**": true,
+    "**/node_modules/**": true,
+    "**/.venv/**": true,
+    "**/__pycache__/**": true,
+    "**/_freeze/**": true
+  },
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    // "workbench.colorTheme": "Tsoding Theme",
+    "editor.fontFamily": "'Iosevka', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "50",
+    "editor.fontSize": 13,
+    "editor.letterSpacing": 0.53,
+    "editor.lineHeight": 1.5,
+    "security.promptForLocalFileProtocolHandling": false,
+    "terminal.integrated.suggest.enabled": false,
+    "[python]": {
+      "diffEditor.ignoreTrimWhitespace": false
+    },
+    "vscode-neovim.neovimExecutablePaths.linux": "/opt/homebrew/bin/nvim",
+    "chat.tools.terminal.autoApprove": {
+      "/^cd /Users/zhangshizhe/Dropbox/UCB/Course/214_STAT/self/lab1/code && conda run -n stat214 python clean\\.py 2>&1$/": {
+        "approve": true,
+        "matchCommandLine": true
+      }
+    },
+    "claudeCode.preferredLocation": "panel",
+    "chat.viewSessions.orientation": "stacked",
+
+  // =========================================================
+  // ================== TODO PLUGIN CONFIG ===================
+  // =========================================================
+    "todohighlight.isEnable": true,
+    "todohighlight.isCaseSensitive": true,
+    "todohighlight.keywords": [
+        "DEBUG:",
+        "REVIEW:",
+        {
+            "text": "NOTE:",
+            "color": "#ff0000",
+            "backgroundColor": "yellow",
+            "overviewRulerColor": "grey"
+        },
+        {
+            "text": "HACK:",
+            "color": "#000",
+            "isWholeLine": false,
+        },
+    ],
+    "mssql.connectionGroups": [
+      {
+        "name": "ROOT",
+        "id": "ROOT"
+      }
+    ],
+    "workbench.colorTheme": "Dark Modern",
+    "[markdown]": {
+      "diffEditor.ignoreTrimWhitespace": false
+    },
+  }
